@@ -484,6 +484,87 @@
             color: white;
         }
 
+        .project-card {
+            padding: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+        }
+
+        .project-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--accent);
+        }
+
+        .project-card-header h3 {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .project-card-header .project-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-decoration: none;
+            padding: 8px 14px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            background: var(--bg-card);
+        }
+
+        .project-link:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
         .education-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -706,6 +787,7 @@
             <ul class="nav-links">
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#writing">Writing</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -823,6 +905,15 @@
                 </div>
 
                 <div class="writing-grid">
+                    <a href="https://patricktoulme.substack.com/p/cutile-on-blackwell-nvidias-compiler" target="_blank" class="writing-card">
+                        <div class="writing-card-header">
+                            <h3>CuTile on Blackwell: NVIDIA's Compiler Moat Is Already Built</h3>
+                            <svg class="writing-card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                        </div>
+                        <p>Tracing a Mixture of Experts kernel through CuTile's compilation stages. 86 lines of Python expand into 180KB of shared memory, tcgen05 instructions, and orchestration patterns that form NVIDIA's deepening compiler moat.</p>
+                        <div class="writing-card-meta">January 2026 · NVIDIA, CuTile, Blackwell, Compilers</div>
+                    </a>
+
                     <a href="https://patricktoulme.substack.com/p/when-xla-isnt-enough-from-pallas" target="_blank" class="writing-card">
                         <div class="writing-card-header">
                             <h3>When XLA Isn't Enough: From Pallas to VLIW with Splash Attention on TPU</h3>
@@ -846,6 +937,57 @@
                     Subscribe to Just a Byte
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Personal Projects</div>
+                    <h2 class="section-title">Building a TPU from Scratch</h2>
+                    <p class="section-intro">I designed and built a custom tensor processing unit — from RTL hardware to an MLIR compiler and PJRT runtime — that runs JAX and executes Llama as a single fused megakernel.</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <div class="project-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+                        </div>
+                        <div>
+                            <h3>Custom TPU</h3>
+                            <div class="project-subtitle">JAX &rarr; PJRT Runtime &rarr; MLIR Compiler &rarr; RTL</div>
+                        </div>
+                    </div>
+                    <p>
+                        A fully custom tensor processing unit built from the ground up: Verilog RTL hardware, an MLIR-based compiler (JAX &rarr; HLO &rarr; MLIR &rarr; ASM &rarr; VLIW &rarr; Binary), and a PJRT runtime that plugs directly into JAX. No CUDA, no hand-written kernels — pure compiler codegen. The compiler fuses entire models into single megakernel binaries, and it now runs Llama end-to-end.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://patricktoulme.substack.com/p/i-built-a-tpu-from-scratch-rtl-mlir" target="_blank" class="project-link">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            Blog: Built a TPU from Scratch
+                        </a>
+                        <a href="https://patricktoulme.substack.com/p/my-custom-tpu-now-runs-llama-one" target="_blank" class="project-link">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            Blog: Custom TPU Runs Llama
+                        </a>
+                        <a href="https://x.com/PatrickToulme/status/2023095643699335219" target="_blank" class="project-link">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            X Post
+                        </a>
+                        <a href="https://x.com/PatrickToulme/status/2017706776288719194" target="_blank" class="project-link">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            X Post
+                        </a>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Verilog</span>
+                        <span class="tag">MLIR</span>
+                        <span class="tag">PJRT</span>
+                        <span class="tag">JAX</span>
+                        <span class="tag">VLIW</span>
+                        <span class="tag">Llama</span>
+                    </div>
+                </div>
             </div>
         </section>
 
